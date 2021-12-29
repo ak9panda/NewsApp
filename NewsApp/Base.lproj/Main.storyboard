@@ -49,6 +49,37 @@
             </objects>
             <point key="canvasLocation" x="1626.0869565217392" y="56.250000000000007"/>
         </scene>
+        <!--Bookmark News View Controller-->
+        <scene sceneID="MLH-vh-zD7">
+            <objects>
+                <viewController storyboardIdentifier="BookmarkNewsViewController" id="8up-Bc-ifz" customClass="BookmarkNewsViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6k8-NW-cmi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SUf-Uu-viR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZFh-5o-ih7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SUf-Uu-viR" firstAttribute="top" secondItem="ZFh-5o-ih7" secondAttribute="top" id="Vvu-bi-hqZ"/>
+                            <constraint firstItem="SUf-Uu-viR" firstAttribute="leading" secondItem="ZFh-5o-ih7" secondAttribute="leading" id="ho6-sU-gjT"/>
+                            <constraint firstItem="ZFh-5o-ih7" firstAttribute="trailing" secondItem="SUf-Uu-viR" secondAttribute="trailing" id="kfC-cI-58j"/>
+                            <constraint firstItem="ZFh-5o-ih7" firstAttribute="bottom" secondItem="SUf-Uu-viR" secondAttribute="bottom" id="ki5-Xw-Dqf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8SR-Zg-k4l"/>
+                    <connections>
+                        <outlet property="bookmarkTableView" destination="SUf-Uu-viR" id="V1L-7D-upN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Syn-2R-rNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1625" y="1545"/>
+        </scene>
         <!--Search News View Controller-->
         <scene sceneID="y4a-2u-1xd">
             <objects>
@@ -226,6 +257,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGA-X7-RYc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="718.84057971014499" y="56.250000000000007"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LFT-eQ-y0a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N1n-j6-hpw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n7t-QW-szo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8up-Bc-ifz" kind="relationship" relationship="rootViewController" id="st2-ut-ct9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wt-Ny-pb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="719" y="1545"/>
         </scene>
     </scenes>
     <resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArticleBookmarkVO" representedClassName="ArticleBookmarkVO" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticleVO" inverseName="bookmarks" inverseEntity="ArticleVO"/>
+    </entity>
+    <entity name="ArticleVO" representedClassName="ArticleVO" syncable="YES" codeGenerationType="class">
+        <attribute name="article_description" optional="YES" attributeType="String"/>
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="publishedAt" optional="YES" attributeType="String"/>
+        <attribute name="source_id" optional="YES" attributeType="String"/>
+        <attribute name="source_name" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="urlToImage" optional="YES" attributeType="String"/>
+        <relationship name="bookmarks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticleBookmarkVO" inverseName="article" inverseEntity="ArticleBookmarkVO"/>
+    </entity>
+    <elements>
+        <element name="ArticleBookmarkVO" positionX="-36" positionY="9" width="128" height="59"/>
+        <element name="ArticleVO" positionX="-63" positionY="-18" width="128" height="194"/>
+    </elements>
+</model>

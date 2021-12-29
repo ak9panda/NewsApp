@@ -13,7 +13,7 @@ class SearchNewsViewController: UIViewController {
     
     lazy var searchBar = UISearchBar(frame: CGRect.zero)
     private var searchNewsVM: SearchNewsViewModelProtocol?
-    var didSelect: (Article) -> () = { _ in }
+    var didSelect: (ArticleVO) -> () = { _ in }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +111,9 @@ extension SearchNewsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.identifier, for: indexPath) as? ArticleTableViewCell, let news = searchNewsVM?.articles.value else{
             return UITableViewCell()
         }
-        cell.setData(article: news[indexPath.row])
+        let article = news[indexPath.row]
+        let articleVO = Article.transformArticle(data: article, context: CoreDataStack.shared.viewContext)
+        cell.setData(article: articleVO)
         return cell
     }
 
@@ -126,6 +128,8 @@ extension SearchNewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let news = searchNewsVM?.articles.value else { return }
-        didSelect(news[indexPath.row])
+        let article = news[indexPath.row]
+        let articleVO = Article.transformArticle(data: article, context: CoreDataStack.shared.viewContext)
+        didSelect(articleVO)
     }
 }

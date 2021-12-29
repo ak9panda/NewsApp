@@ -15,10 +15,10 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var imgCover: UIImageView!
     @IBOutlet weak var lblDate: UILabel!
     
-    private var article: Article? {
+    private var article: ArticleVO? {
         didSet {
             if let article = article {
-                lblSourceName.text = article.source?.name
+                lblSourceName.text = article.source_name
                 lblTitle.text = article.title
                 if let img = article.urlToImage {
                     imgCover.sd_setImage(with: URL(string: img), placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.progressiveLoad, completed: nil)
@@ -28,7 +28,7 @@ class ArticleTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(article: Article) {
+    func setData(article: ArticleVO) {
         self.article = article
     }
     

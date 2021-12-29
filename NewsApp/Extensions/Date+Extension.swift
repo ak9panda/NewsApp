@@ -29,6 +29,9 @@ extension Date {
     }()
 
     static func string(iso string: String) -> String {
+        if string == "" {
+            return ""
+        }
         let date = Date(dateString: string)
         return Date.dateOnly.string(from: date)
     }

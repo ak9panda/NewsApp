@@ -12,7 +12,7 @@ class DiscoverNewsViewController: UIViewController {
     @IBOutlet weak var DiscoverNewTableView: UITableView!
     
     private var newsVM: DiscoverNewsViewModelProtocol?
-    var didSelect: (Article) -> () = { _ in }
+    var didSelect: (ArticleVO) -> () = { _ in }
     var didTouchSearch: () -> () = {}
     
     lazy var refreshControl: UIRefreshControl = {
@@ -71,7 +71,7 @@ extension DiscoverNewsViewController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.refreshControl.endRefreshing()
-        newsVM?.fetchTopHeadline()
+        newsVM?.refreshTopHeadline()
     }
 }
 

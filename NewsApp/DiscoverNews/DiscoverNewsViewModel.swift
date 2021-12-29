@@ -8,15 +8,16 @@
 import Foundation
 
 protocol DiscoverNewsViewModelProtocol {
-    var articles: Observable<[Article]> { get }
+    var articles: Observable<[ArticleVO]> { get }
     var error: Observable<APIError> { get }
     
     func fetchTopHeadline()
+    func refreshTopHeadline()
 }
 
 struct DiscoverNewsViewModel: DiscoverNewsViewModelProtocol {
     
-    var articles = Observable<[Article]>([])
+    var articles = Observable<[ArticleVO]>([])
     var error = Observable<APIError>(.initial)
     private let service: NewsNetworkClientProtocol?
     
@@ -25,14 +26,35 @@ struct DiscoverNewsViewModel: DiscoverNewsViewModelProtocol {
     }
     
     func fetchTopHeadline(){
-        self.service?.fetchTopHeadlines(Completion: { result in
-            switch result {
-            case .success(let topHeadline):
-                self.articles.value = topHeadline.articles
-            case .failure(let error):
-                self.error.value = error
-                print("error: \(error.localizedDescription)")
+        
+        if let articles = ArticleVO.fetchArticles() {
+            if articles.isEmpty {
+                self.service?.fetchTopHeadlines(Completion: { result in
+                    switch result {
+                    case .success(let topHeadline):
+                        topHeadline.articles.forEach { article in
+                            Article.saveArticleEntity(data: article, context: CoreDataStack.shared.viewContext)
+                        }
+                        let articleVOs = ArticleVO.fetchArticles()
+                        self.articles.value = articleVOs
+                    case .failure(let error):
+                        self.error.value = error
+                        print("error: \(error.localizedDescription)")
+                    }
+                })
+            }else {
+                self.articles.value = articles
             }
-        })
+        }else {
+            self.error.value = APIError.noData
+        }
     }
+    
+    func refreshTopHeadline() {
+        // delete all news
+        ArticleVO.deleteAllArticles()
+        // fetch article again
+        fetchTopHeadline()
+    }
+
 }
