@@ -9,7 +9,7 @@ import Foundation
 
 struct Endpoint {
     static let baseURL = "https://newsapi.org/v2/"
-    static let APIKey = "d043ec92bac0478f88e861eb3ff94437"
+    static let APIKey = "ebde7ed148734db899e388df2f0aa9e2"
 }
 
 struct Routes {
